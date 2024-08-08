@@ -9,6 +9,12 @@ Build the cdse_utilities Docker image:
 ```
 docker build --no-cache https://github.com/j-musial/utilities.git -t cdse_utilities
 ```
+## Importnat Note: Handling of the inpout/output directories using [Bind Mounts](https://docs.docker.com/storage/bind-mounts/) in Docker
+The local storage of your computer can be attached directly to the Docker Container as a Bind Mount. Consequently, you can easily manage ingestion/outputing data directly from/to your local storage. For instance:
+```
+docker run -it -v /home/JohnLane:/home/ubuntu  
+```
+maps the content of the local home directory name /home/JohnLane to the /home/ubuntu directory in the Docker container.
 
 ## Extract a single Senitnel-1 SLC burst using Docker environment:
 ```
