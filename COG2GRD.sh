@@ -51,7 +51,7 @@ done
  
 cd $out_dir
 unzip $COG_zip -d $out_dir
-out_dir=${out_dir}/$(basename ${COG_zip} .zip).SAFE
+out_dir=${out_dir}/$(basename ${COG_zip} .zip)
 input_cogs=$(find $out_dir -name "*.tiff")
 output_manifest=${out_dir}/manifest.safe
 for input_cog in $input_cogs; do
