@@ -7,13 +7,11 @@ Bash functions for effective work with official Copernicus Programme Sentinel-1 
 Download the official repository, then from the extracted directory build the image:
 
 ```
-docker build -t s1_utilities:latest .
+docker build -t cdse_utilities:latest .
 ```
 Now run the container:
 ```
-docker run -it -e AAWS_ACCESS_KEY_ID=*** \
-           -e AWS_SECRET_ACCESS_KEY=*** \ 
-           s1_utilities:latest /bin/bash
+docker run -it -e AWS_ACCESS_KEY_ID=YOUR_CDSE_ACCESS_KEY -e AWS_SECRET_ACCESS_KEY=YOUR_CDSE_SECRET_KEY cdse_utilities:latest /bin/bash
 ```
 *** - These can be generated according to the instructions at Copernicus Data Space Documentation (https://documentation.dataspace.copernicus.eu/APIs/S3.html).
 
