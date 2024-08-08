@@ -12,6 +12,7 @@ RUN apt-get update && \
         wget \
         python3-pip \
         curl \
+        parallel \
         dpkg && \
     rm -rf /var/lib/apt/lists/*
 
