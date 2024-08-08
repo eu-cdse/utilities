@@ -43,7 +43,7 @@ while getopts “hi:o:v” OPTION; do
 	esac
 done
 
-[ "${COG_zip##*_}" != "COG.zip" ] && echo "ERROR: $COG_zip does not appear to be a valid GRD COG file." && exit 1
+[ "${COG_zip##*_}" != "COG.SAFE.zip" ] && echo "ERROR: $COG_zip does not appear to be a valid GRD COG file." && exit 1
 [ -z $(which jacksum) ] && echo "ERROR: jacksum utility not installed. Please visit https://jacksum.net." && exit 1
 [ -z $(which xmlstarlet) ] && echo "ERROR: xmlstarlet utility not installed. Please type in cmd: sudo apt install xmlstarlet" && exit 1
 [ -z $(which gdal_translate) ] && echo "ERROR: GDAL library not installed. Please type in cmd: sudo apt install gdal-bin" && exit 1
