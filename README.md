@@ -1,30 +1,27 @@
-# CDSE Utilities
+# Copernicus Data Space Ecosystem (CDSE) Utilities
 
 This repository contains various utilities for reformating/(pre)processing of Sentinel data published within the Copernicus Data Space Ecosystem project.
 
-## Run via Docker container
+## Build a Docker container
 
-Download the official repository, then from the extracted directory build the image:
+Build the cdse_utilities Docker image:
 
 ```
-docker build -t cdse_utilities:latest .
+docker build --no-cache https://github.com/j-musial/utilities.git -t cdse_utilities
 ```
-Now run the container:
-```
-docker run -it -e AWS_ACCESS_KEY_ID=YOUR_CDSE_ACCESS_KEY -e AWS_SECRET_ACCESS_KEY=YOUR_CDSE_SECRET_KEY cdse_utilities:latest /bin/bash
-```
-To generate S3 se can be generated according to the instructions at Copernicus Data Space Documentation (https://documentation.dataspace.copernicus.eu/APIs/S3.html).
 
-## Example usage
-sentinel1_burst_extractor
+## Extract a single Senitnel-1 SLC burst using Docker environment:
 ```
-sentinel1_burst_extractor.sh -o /home/ubuntu -n S1A_IW_SLC__1SDH_20240201T085352_20240201T085422_052363_0654EE_5132.SAFE -p hh -s iw1 -r 301345
+docker run -it -v /home/ubuntu:/home/ubuntu -e AWS_ACCESS_KEY_ID=YOUR_CDSE_ACCESS_KEY -e AWS_SECRET_ACCESS_KEY=YOUR_CDSE_SECRET_KEY cdse_utilities sentinel1_burst_extractor.sh -o /home/ubuntu -n S1A_IW_SLC__1SDH_20240201T085352_20240201T085422_052363_0654EE_5132.SAFE -p hh -s iw1 -r 301345
 ```
-GRD2COG
+Click [here](https://eodata-s3keysmanager.dataspace.copernicus.eu/) to generate CDSE S3 credentials. For more information on the CDSE S3 API please click [here](https://documentation.dataspace.copernicus.eu/APIs/S3.html).
+
+## Convert Sentinel-1 GRD poduct from [GeoTIFF](https://gdal.org/drivers/raster/gtiff.html) to [COG](https://gdal.org/drivers/raster/cog.html) format 
 ```
-GRD2COG.sh -i S1A_IW_GRDH_1SDV_20230206T165050_20230206T165115_047118_05A716_53C5.SAFE.zip -o /tmp
+sudo docker run -it -v /home/ubuntu:/home/ubuntu cdse_utilities GRD2COG.sh -i /home/ubuntu/S1A_IW_GRDH_1SDV_20230206T165050_20230206T165115_047118_05A716_53C5.SAFE.zip -o /home/ubuntu
 ```
-COG2GRD
+
+## Convert Sentinel-1 COG GRD poduct from [COG](https://gdal.org/drivers/raster/cog.html) to [GeoTIFF](https://gdal.org/drivers/raster/gtiff.html) format
 ```
-COG2GRD.sh -i S1A_IW_GRDH_1SDV_20230206T165050_20230206T165115_047118_05A716_1A19_COG.SAFE.zip -o /tmp
+sudo docker run -it -v /home/ubuntu:/home/ubuntu cdse_utilities COG2COG.sh -i /home/ubuntu/docker_test/S1A_IW_GRDH_1SDV_20230206T165050_20230206T165115_047118_05A716_1A19_COG.SAFE.zip -o /home/ubuntu
 ```
