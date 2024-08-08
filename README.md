@@ -24,10 +24,10 @@ Click [here](https://eodata-s3keysmanager.dataspace.copernicus.eu/) to generate 
 
 ## Convert Sentinel-1 GRD poduct from [GeoTIFF](https://gdal.org/drivers/raster/gtiff.html) to [COG](https://gdal.org/drivers/raster/cog.html) format 
 ```
-sudo docker run -it -v /home/ubuntu:/home/ubuntu cdse_utilities GRD2COG.sh -i /home/ubuntu/S1A_IW_GRDH_1SDV_20230206T165050_20230206T165115_047118_05A716_53C5.SAFE.zip -o /home/ubuntu
+docker run -it -v /home/ubuntu:/home/ubuntu cdse_utilities GRD2COG.sh -i /home/ubuntu/S1A_IW_GRDH_1SDV_20230206T165050_20230206T165115_047118_05A716_53C5.SAFE.zip -o /home/ubuntu
 ```
 
 ## Convert Sentinel-1 COG GRD poduct from [COG](https://gdal.org/drivers/raster/cog.html) to [GeoTIFF](https://gdal.org/drivers/raster/gtiff.html) format
 ```
-sudo docker run -it -v /home/ubuntu:/home/ubuntu cdse_utilities COG2COG.sh -i /home/ubuntu/docker_test/S1A_IW_GRDH_1SDV_20230206T165050_20230206T165115_047118_05A716_1A19_COG.SAFE.zip -o /home/ubuntu
+docker run -it -v /home/ubuntu:/home/ubuntu cdse_utilities COG2COG.sh -i /home/ubuntu/docker_test/S1A_IW_GRDH_1SDV_20230206T165050_20230206T165115_047118_05A716_1A19_COG.SAFE.zip -o /home/ubuntu
 ```
