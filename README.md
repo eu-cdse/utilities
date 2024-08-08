@@ -1,4 +1,4 @@
-# S1 Utilities
+# CDSE Utilities
 
 Bash functions for effective work with official Copernicus Programme Sentinel-1 products.
 
