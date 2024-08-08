@@ -14,7 +14,7 @@ The local storage of your computer can be attached directly to the Docker Contai
 ```
 docker run -it -v /home/JohnLane:/home/ubuntu  
 ```
-maps the content of the local home directory name /home/JohnLane to the /home/ubuntu directory in the Docker container.
+maps the content of the local home directory named /home/JohnLane to the /home/ubuntu directory in a Docker container.
 
 ## Extract a single Senitnel-1 SLC burst using Docker environment:
 ```
