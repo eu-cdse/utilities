@@ -11,7 +11,7 @@ usage()
 cat << EOF
 #usage: $0 options
 This utility converts compressed (zipped) GRD .SAFE product in .COG format (cloud optimized geotiff) into compressed (zipped) GRD .SAFE product in .tiff.
-Warning GDAL version >= 3.6 is required.
+Warning GDAL version >= 3.1 is required.
 OPTIONS:
    -h      this message
    -i      Sentinel-1 GRD_COG.SAFE compressed product in .zip
