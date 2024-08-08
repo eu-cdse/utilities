@@ -1,6 +1,6 @@
 # CDSE Utilities
 
-This repository contains various utilities for reformating/(pre)processing Sentinel data published within the Copernicus Data Space Ecosystem project.
+This repository contains various utilities for reformating/(pre)processing of Sentinel data published within the Copernicus Data Space Ecosystem project.
 
 ## Run via Docker container
 
