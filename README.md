@@ -1,6 +1,6 @@
 # CDSE Utilities
 
-Bash functions for effective work with official Copernicus Programme Sentinel-1 products.
+This repository contains various utilities for reformating/(pre)processing Sentinel data published within the Copernicus Data Space Ecosystem project.
 
 ## Run via Docker container
 
@@ -13,7 +13,7 @@ Now run the container:
 ```
 docker run -it -e AWS_ACCESS_KEY_ID=YOUR_CDSE_ACCESS_KEY -e AWS_SECRET_ACCESS_KEY=YOUR_CDSE_SECRET_KEY cdse_utilities:latest /bin/bash
 ```
-*** - These can be generated according to the instructions at Copernicus Data Space Documentation (https://documentation.dataspace.copernicus.eu/APIs/S3.html).
+To generate S3 se can be generated according to the instructions at Copernicus Data Space Documentation (https://documentation.dataspace.copernicus.eu/APIs/S3.html).
 
 ## Example usage
 sentinel1_burst_extractor
@@ -26,5 +26,5 @@ GRD2COG.sh -i S1A_IW_GRDH_1SDV_20230206T165050_20230206T165115_047118_05A716_53C
 ```
 COG2GRD
 ```
-COG2GRD.sh -i '/tmp/S1A_IW_GRDH_1SDV_20230206T165050_20230206T165115_047118_05A716_2626_COG.zip' -o /tmp
+COG2GRD.sh -i S1A_IW_GRDH_1SDV_20230206T165050_20230206T165115_047118_05A716_1A19_COG.SAFE.zip -o /tmp
 ```
