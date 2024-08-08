@@ -5,7 +5,8 @@
 ###############################
 #release notes:
 #Version 1.00 [20230602] - initial release  
-version="1.00"
+#Version 1.01 [20240808] - change generated file name to COG.SAFE.zip instead of COG.zip
+version="1.01"
 usage()
 {
 cat << EOF
@@ -109,5 +110,5 @@ CRC_16=$(jacksum -a 'crc:16,1021,FFFF,false,false,0' -X -F '#CHECKSUM' $output_m
 cd ..
 mv ${out_dir} ${out_dir%_*}_${CRC_16}_COG.SAFE
 out_dir=${out_dir%_*}_${CRC_16}_COG.SAFE
-zip -0rm ${out_dir%.*}.zip $(basename $out_dir)
+zip -0rm ${out_dir%.*}.SAFE.zip $(basename $out_dir)
 exit 0
