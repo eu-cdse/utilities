@@ -157,8 +157,8 @@ else
 fi
 relative_burst_id=$(printf '%06d' ${relative_burst_id})
 starting_line=$(echo "(${burst_number}-1)*${number_of_lines}" | bc)
-[ -z $out_path ] && out_path=./${in_path: -72:4}$(echo ${subswath_id}| tr a-z A-Z)"SLC"$(echo ${polarization}| tr a-z A-Z)${in_path: -60:5}${relative_burst_id}_${burst_sensing_start}_${datatake_id}.SAFE || out_path=${out_path}/${in_path: -72:4}$(echo ${subswath_id}| tr a-z A-Z)"SLC"$(echo ${polarization}| tr a-z A-Z)${in_path: -60:5}${relative_burst_id}_${burst_sensing_start}_${datatake_id}.SAFE
-new_pattern=${annotation_xml: -68:15}${relative_burst_id}-${burst_sensing_start}-${datatake_id}
+[ -z $out_path ] && out_path=./${in_path: -72:3}_${burst_sensing_start}_${relative_burst_id}_$(echo ${subswath_id}| tr a-z A-Z)_$(echo ${polarization}| tr a-z A-Z)_${datatake_id}.SAFE || out_path=${out_path}/${in_path: -72:3}_${burst_sensing_start}_${relative_burst_id}_$(echo ${subswath_id}| tr a-z A-Z)_$(echo ${polarization}| tr a-z A-Z)_${datatake_id}.SAFE
+new_pattern=$(echo ${in_path: -72:3}-${burst_sensing_start}-${relative_burst_id}-${subswath_id}-${polarization}-${datatake_id} | tr A-Z a-z)
 mkdir -p ${out_path}/measurement/ ${out_path}/annotation/calibration/
 printf "$annotation_data">${out_path}/annotation/${new_pattern}.xml
 s5cmd --endpoint-url "https://${s3_endpoint}" -r 5 cat $(echo $annotation_xml | sed 's/annotation\//annotation\/calibration\/calibration-/g')>${out_path}/annotation/calibration/calibration-${new_pattern}.xml
