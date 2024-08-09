@@ -27,7 +27,7 @@ docker: permission denied while trying to connect to the Docker daemon socket at
 ```
 docker run -it -v /home/ubuntu:/home/ubuntu -e AWS_ACCESS_KEY_ID=YOUR_CDSE_ACCESS_KEY -e AWS_SECRET_ACCESS_KEY=YOUR_CDSE_SECRET_KEY cdse_utilities sentinel1_burst_extractor.sh -o /home/ubuntu -n S1A_IW_SLC__1SDH_20240201T085352_20240201T085422_052363_0654EE_5132.SAFE -p hh -s iw1 -r 301345
 ```
-Click [here](https://eodata-s3keysmanager.dataspace.copernicus.eu/) to generate CDSE S3 credentials. For more information on the CDSE S3 API please click [here](https://documentation.dataspace.copernicus.eu/APIs/S3.html).
+Please replace YOUR_CDSE_ACCESS_KEY and YOUR_CDSE_SECRET_KEY with the corresponding CDSE S3 credentials generated [here](https://eodata-s3keysmanager.dataspace.copernicus.eu/). For more information on the CDSE S3 API please click [here](https://documentation.dataspace.copernicus.eu/APIs/S3.html).
 
 ## Extract series of Sentinel-1 SLC bursts over a selected point (x=lon,y=lat) across selected dates using Docker environment:
 ```
