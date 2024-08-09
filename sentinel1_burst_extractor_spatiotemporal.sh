@@ -100,10 +100,10 @@ fi
 if [ ! "$polarization" = "vv" -a ! "$polarization" = "vh" -a ! "$polarization" = "hh" -a ! "$polarization" = "hv" ]; then 
 	echo "polarization '$polarization' not equals one of vv,vh,hh,hv" && exit 3
 fi
-if [ -z $x ]; then 
+if [ -z $lon ]; then 
 	echo "Longitude (x) not defined" && exit 3
 fi
-if [ -z $y ]; then 
+if [ -z $lat ]; then 
 	echo "Latitude (y) not defined" && exit 3
 fi
 
