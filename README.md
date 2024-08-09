@@ -16,11 +16,23 @@ docker run -it -v /home/JohnLane:/home/ubuntu
 ```
 maps the content of the local home directory named /home/JohnLane to the /home/ubuntu directory in a Docker container.
 
-## Extract a single Senitnel-1 SLC burst using Docker environment:
+## Problem with docker permission
+
+Please click [here](https://betterstack.com/community/questions/how-to-fix-docker-got-permission-denied/) if you encounter the following error while runing Docker container:
+```
+docker: permission denied while trying to connect to the Docker daemon socket at unix
+```
+
+## Extract a single Sentinel-1 SLC burst using Docker environment:
 ```
 docker run -it -v /home/ubuntu:/home/ubuntu -e AWS_ACCESS_KEY_ID=YOUR_CDSE_ACCESS_KEY -e AWS_SECRET_ACCESS_KEY=YOUR_CDSE_SECRET_KEY cdse_utilities sentinel1_burst_extractor.sh -o /home/ubuntu -n S1A_IW_SLC__1SDH_20240201T085352_20240201T085422_052363_0654EE_5132.SAFE -p hh -s iw1 -r 301345
 ```
 Click [here](https://eodata-s3keysmanager.dataspace.copernicus.eu/) to generate CDSE S3 credentials. For more information on the CDSE S3 API please click [here](https://documentation.dataspace.copernicus.eu/APIs/S3.html).
+
+## Extract a series of Sentinel-1 SLC bursts over a selected point (x=lon,y=lat) using Docker environment:
+```
+docker run -it -v /home/ubuntu:/home/ubuntu -e AWS_ACCESS_KEY_ID=YOUR_CDSE_ACCESS_KEY -e AWS_SECRET_ACCESS_KEY=YOUR_CDSE_SECRET_KEY cdse_utilities sentinel1_burst_extractor_spatiotemporal.sh -o /home/ubuntu -s 2024-08-02 -e 2024-08-08 -x 13.228 -y 52.516 -p vv
+```
 
 ## Convert Sentinel-1 GRD poduct from [GeoTIFF](https://gdal.org/drivers/raster/gtiff.html) to [COG](https://gdal.org/drivers/raster/cog.html) format 
 ```
