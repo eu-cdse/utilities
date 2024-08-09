@@ -26,8 +26,9 @@ RUN curl -L -O 'https://s3.waw3-2.cloudferro.com/swift/v1/jacksum/jacksum_1.7.0-
 COPY COG2GRD.sh /bin/COG2GRD.sh
 COPY GRD2COG.sh /bin/GRD2COG.sh
 COPY sentinel1_burst_extractor.sh /bin/sentinel1_burst_extractor.sh
+COPY sentinel1_burst_extractor_spatiotemporal.sh /bin/sentinel1_burst_extractor_spatiotemporal.sh
 
-RUN chmod +x /bin/COG2GRD.sh /bin/GRD2COG.sh /bin/sentinel1_burst_extractor.sh
+RUN chmod +x /bin/COG2GRD.sh /bin/GRD2COG.sh /bin/sentinel1_burst_extractor.sh /bin/sentinel1_burst_extractor_spatiotemporal.sh
 
 # Set environment variables
 ENV AWS_S3_ENDPOINT=eodata.dataspace.copernicus.eu \
