@@ -29,7 +29,7 @@ docker run -it -v /home/ubuntu:/home/ubuntu -e AWS_ACCESS_KEY_ID=YOUR_CDSE_ACCES
 ```
 Click [here](https://eodata-s3keysmanager.dataspace.copernicus.eu/) to generate CDSE S3 credentials. For more information on the CDSE S3 API please click [here](https://documentation.dataspace.copernicus.eu/APIs/S3.html).
 
-## Extract a series of Sentinel-1 SLC bursts over a selected point (x=lon,y=lat) using Docker environment:
+## Extract series of Sentinel-1 SLC bursts over a selected point (x=lon,y=lat) across selected dates using Docker environment:
 ```
 docker run -it -v /home/ubuntu:/home/ubuntu -e AWS_ACCESS_KEY_ID=YOUR_CDSE_ACCESS_KEY -e AWS_SECRET_ACCESS_KEY=YOUR_CDSE_SECRET_KEY cdse_utilities sentinel1_burst_extractor_spatiotemporal.sh -o /home/ubuntu -s 2024-08-02 -e 2024-08-08 -x 13.228 -y 52.516 -p vv
 ```
