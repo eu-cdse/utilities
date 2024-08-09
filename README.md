@@ -18,7 +18,7 @@ maps the content of the local home directory named /home/JohnLane to the /home/u
 
 ## Problem with docker permission
 
-Please click [here](https://betterstack.com/community/questions/how-to-fix-docker-got-permission-denied/) if you encounter the following error while runing Docker container:
+Please click [here](https://betterstack.com/community/questions/how-to-fix-docker-got-permission-denied/) if you encounter the following error while running Docker container:
 ```
 docker: permission denied while trying to connect to the Docker daemon socket at unix
 ```
