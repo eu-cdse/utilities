@@ -26,7 +26,7 @@ OPTIONS:
    -h      this message
    -i	   path to root dir of a Sentinel-1 SLC product. eg.  Odata counterpart:S3Path 
    -o      output directory. If not specified the output file will be created in $PWD 
-   -p      SAR polarization, one of: vv,vh,hh,hv Odata counterpart:
+   -p      SAR polarization, one of: vv,vh,hh,hv Odata counterpart: PolarisationChannels
    -s	   Sentinel-1 subswath ID, one of iw1,iw2,iw3,ew1,ew2,ew3,ew4,ew5,ew6 Odata counterpart: SwathIdentifier
    -r	   Sentinel-1 relative burst ID, eg. 301345 Odata counterpart: BurstId
    -v      sentinel1_burst_extractor_zipper.sh version 
