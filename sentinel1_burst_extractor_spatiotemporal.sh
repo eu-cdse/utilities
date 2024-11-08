@@ -15,7 +15,7 @@ This utility extract multiple Sentinel1 SLC bursts given the:
 	-Copernicus Data Space Ecosystem S3 credentials
 	-Latitude of a Point of Interest (POI)
 	-Longitude of a Point of Interest (POI)
-	-SAR polarization e.g. vv
+	-SAR polarization e.g. vv,vh,hh,hv
 	-Start date in format YYYY-MM-DD
 	-End date in format YYYY-MM-DD 
 To obtain the Copernicus Data Space Ecosystem S3 credentials please visit https://eodata-s3keysmanager.dataspace.copernicus.eu/)
@@ -24,7 +24,7 @@ The credentials have to be exported as environmental variables by typing:
 export AWS_ACCESS_KEY_ID='replace-this-with-your-cdse-s3-access-key-id'
 export AWS_SECRET_ACCESS_KEY='replace-this-with-your-cdse-s3-secret-access-key'  
 
-Warning: GDAL version has to be at least 3.8!
+Warning: GDAL version has to be at least 3.9!
 
 OPTIONS:
    -e      End date 
