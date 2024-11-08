@@ -3,7 +3,7 @@
 #./sentinel1_burst_extractor.sh -o /home/ubuntu/burst_test_v3 -n S1A_IW_SLC__1SDH_20240201T085352_20240201T085422_052363_0654EE_5132.SAFE -p hh -s iw1 -r 301345
 #./sentinel1_burst_extractor.sh -o /home/ubuntu/burst_test_v3 -n S1A_IW_SLC__1SDV_20141012T051707_20141012T051734_002792_003250_1FD5.SAFE -p vh -s iw3 -r 202680
 #developed by CloudFerro 
-#contact jmusial@cloudferro.com
+#contact jmusial(at)cloudferro.com
 ###############################
 #release notes:
 #Version 1.00 [20240807] - initial release
@@ -29,6 +29,8 @@ The credentials have to be exported as environmental variables by typing:
 
 export AWS_ACCESS_KEY_ID='replace-this-with-your-cdse-s3-access-key-id'
 export AWS_SECRET_ACCESS_KEY='replace-this-with-your-cdse-s3-secret-access-key'  
+
+Warning! GDAL version has to be >= 3.9
 
 OPTIONS:
    -e      S3 endpoint. Default is eodata.dataspace.copernicus.eu 
