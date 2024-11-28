@@ -7,7 +7,7 @@ This repository contains various utilities for reformating/(pre)processing of Se
 Build the cdse_utilities Docker image:
 
 ```
-docker build --no-cache https://github.com/j-musial/utilities.git -t cdse_utilities
+docker build --no-cache https://github.com/eu-cdse/utilities.git -t cdse_utilities
 ```
 ## Importnat Note: Handling of the input/output directories using [Bind Mounts](https://docs.docker.com/storage/bind-mounts/) in Docker
 The local storage of your computer can be attached directly to the Docker Container as a Bind Mount. Consequently, you can easily manage ingestion/outputing data directly from/to your local storage. For instance:
