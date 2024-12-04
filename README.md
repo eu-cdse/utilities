@@ -1,6 +1,6 @@
 # Copernicus Data Space Ecosystem (CDSE) Utilities
 
-This repository contains various utilities for reformating/(pre)processing of Sentinel data published within the Copernicus Data Space Ecosystem project.
+This repository contains various utilities for reformatting/(pre)processing of Sentinel data published within the Copernicus Data Space Ecosystem project.
 
 ## Build a Docker container
 
@@ -9,8 +9,8 @@ Build the cdse_utilities Docker image:
 ```
 docker build --no-cache https://github.com/eu-cdse/utilities.git -t cdse_utilities
 ```
-## Importnat Note: Handling of the input/output directories using [Bind Mounts](https://docs.docker.com/storage/bind-mounts/) in Docker
-The local storage of your computer can be attached directly to the Docker Container as a Bind Mount. Consequently, you can easily manage ingestion/outputing data directly from/to your local storage. For instance:
+## Important Note: Handling of the input/output directories using [Bind Mounts](https://docs.docker.com/storage/bind-mounts/) in Docker
+The local storage of your computer can be attached directly to the Docker Container as a Bind Mount. Consequently, you can easily manage ingestion/outputting data directly from/to your local storage. For instance:
 ```
 docker run -it -v /home/JohnLane:/home/ubuntu  
 ```
@@ -34,12 +34,12 @@ Please replace YOUR_CDSE_ACCESS_KEY and YOUR_CDSE_SECRET_KEY with the correspond
 docker run -it -v /home/ubuntu:/home/ubuntu -e AWS_ACCESS_KEY_ID=YOUR_CDSE_ACCESS_KEY -e AWS_SECRET_ACCESS_KEY=YOUR_CDSE_SECRET_KEY cdse_utilities sentinel1_burst_extractor_spatiotemporal.sh -o /home/ubuntu -s 2024-08-02 -e 2024-08-08 -x 13.228 -y 52.516 -p vv
 ```
 
-## Convert Sentinel-1 GRD poduct from [GeoTIFF](https://gdal.org/drivers/raster/gtiff.html) to [COG](https://gdal.org/drivers/raster/cog.html) format 
+## Convert Sentinel-1 GRD product from [GeoTIFF](https://gdal.org/drivers/raster/gtiff.html) to [COG](https://gdal.org/drivers/raster/cog.html) format 
 ```
 docker run -it -v /home/ubuntu:/home/ubuntu cdse_utilities GRD2COG.sh -i /home/ubuntu/S1A_IW_GRDH_1SDV_20230206T165050_20230206T165115_047118_05A716_53C5.SAFE.zip -o /home/ubuntu
 ```
 
-## Convert Sentinel-1 COG GRD poduct from [COG](https://gdal.org/drivers/raster/cog.html) to [GeoTIFF](https://gdal.org/drivers/raster/gtiff.html) format
+## Convert Sentinel-1 COG GRD product from [COG](https://gdal.org/drivers/raster/cog.html) to [GeoTIFF](https://gdal.org/drivers/raster/gtiff.html) format
 ```
 docker run -it -v /home/ubuntu:/home/ubuntu cdse_utilities COG2COG.sh -i /home/ubuntu/docker_test/S1A_IW_GRDH_1SDV_20230206T165050_20230206T165115_047118_05A716_1A19_COG.SAFE.zip -o /home/ubuntu
 ```
