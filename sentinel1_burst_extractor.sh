@@ -136,7 +136,7 @@ if [ $(printf "$annotation_xml" | grep -c 'EC2MetadataError') -eq 1 ]; then
 fi
 annotation_data=$(s5cmd --endpoint-url "https://${s3_endpoint}" -r 5 cat $annotation_xml)
 manifest_data=$(s5cmd --endpoint-url "https://${s3_endpoint}" -r 5 cat s3:/${in_path}/manifest.safe)
-datatake_id=$(printf "$annotation_data" | xmlstarlet sel -t -m '/product/generalAnnotation/downlinkInformationList/downlinkInformation/downlinkValues' -v dataTakeId | awk '{printf("%06d",$1)}')
+datatake_id=$(printf "$annotation_data" | xmlstarlet sel -t -m '/product/adsHeader' -v missionDataTakeId | awk '{printf("%06d",$1)}')
 number_of_lines=$(printf "$annotation_data" | xmlstarlet sel -t -m '/product/swathTiming' -v linesPerBurst)
 number_of_samples=$(printf "$annotation_data" | xmlstarlet sel -t -m '/product/swathTiming' -v samplesPerBurst)
 burst_number=$(printf "$annotation_data" | xmlstarlet sel -t -m "//burst/burstId" -v . -n | grep -B 1000 ${relative_burst_id} | wc -l)
