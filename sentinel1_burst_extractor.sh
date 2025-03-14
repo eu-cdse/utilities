@@ -9,12 +9,13 @@
 #Version 1.0 [20240807] - initial release
 #Version 1.1 [20241025] - adjustments of annotation and manifest files
 #Version 1.2 [20250303] - adjustment of burst stop time
+#Version 1.3 [20250314] - corrected GCPs extraction
 #To install dependencies on Debian-like disctributions please execute 4 lines below:
 #curl -L -O 'https://github.com/peak/s5cmd/releases/download/v2.2.2/s5cmd_2.2.2_linux_amd64.deb'
 #sudo dpkg -i s5cmd_2.2.2_linux_amd64.deb
 #sudo apt update
 #sudo apt install -y xmlstarlet bc jq
-version="1.2"
+version="1.3"
 usage()
 {
 cat << EOF
@@ -176,13 +177,10 @@ platform_number=$(printf "$manifest_data" | xmlstarlet sel -t -m 'xfdu:XFDU/meta
 new_pattern=${annotation_xml: -68:15}${relative_burst_id}-${burst_sensing_start}-${datatake_id}
 new_pattern_short=$(echo $new_pattern | tr -d '-')
 mkdir -p ${out_path}/measurement/ ${out_path}/annotation/calibration/
-
+new_gcps=$(printf "$annotation_data" | xmlstarlet sel -t -m 'product/geolocationGrid/geolocationGridPointList/geolocationGridPoint' -v "concat('gcp=',pixel,',',line - ${starting_line},',',longitude,',',latitude,',',height,'|')"| tr '|' '&')
 annotation_data=$(printf "$annotation_data" | xmlstarlet ed \
 -d "product/swathTiming/burstList/burst[byteOffset!=$burst_byteoffset]" \
--d "product/geolocationGrid/geolocationGridPointList/geolocationGridPoint[line<$starting_line]" \
--d "product/geolocationGrid/geolocationGridPointList/geolocationGridPoint[line>$ending_line]" \
--u "product/geolocationGrid/geolocationGridPointList/geolocationGridPoint[line=$starting_line]/line" -v 0 \
--u "product/geolocationGrid/geolocationGridPointList/geolocationGridPoint[line=$ending_line]/line" -v $number_of_lines \
+-u "product/geolocationGrid/geolocationGridPointList/geolocationGridPoint/line" -x ". - ${starting_line}" \
 -u 'product/swathTiming/burstList/@count' -v 1 -u 'product/imageAnnotation/imageInformation/@numberOfLines' -v ${number_of_lines} \
 -u 'product/imageAnnotation/imageInformation/numberOfLines' -v ${number_of_lines} \
 -u "product/imageAnnotation/imageInformation/productFirstLineUtcTime" -v $burst_azimuth_start \
@@ -204,7 +202,6 @@ if [ "$(s5cmd --endpoint-url "https://${s3_endpoint}" -r 5 ls s3:/${in_path}/ann
 	s5cmd --endpoint-url "https://${s3_endpoint}" -r 5 cat $(echo $annotation_xml | sed 's/annotation\//annotation\/rfi\/rfi-/g') | xmlstarlet ed -u 'rfi/adsHeader/startTime' -v $burst_azimuth_start -u 'rfi/adsHeader/stopTime' -v $burst_azimuth_end >${out_path}/annotation/rfi/rfi-${new_pattern}.xml
 fi
 
-new_gcps=$(printf "$annotation_data" | xmlstarlet sel -t -m 'product/geolocationGrid/geolocationGridPointList/geolocationGridPoint' -v "concat('gcp=',pixel,',',line,',',longitude,',',latitude,',',height,'|')"| tr '|' '&')
 footprint=$(printf "$annotation_data" | xmlstarlet sel -t -m 'product/geolocationGrid/geolocationGridPointList/geolocationGridPoint[line=0]' -v "concat(number(longitude),' ',number(latitude),',')" | awk -F',' 'BEGIN{OFS=","}{print($1,$(NF-1))}')
 footprint=${footprint}','$(printf "$annotation_data" | xmlstarlet sel -t -m 'product/geolocationGrid/geolocationGridPointList/geolocationGridPoint[not(line=0)]' -v "concat(number(longitude),' ',number(latitude),',')" | awk -F',' 'BEGIN{OFS=","}{print($(NF-1),$1)}')','"${footprint%,*}"
 
